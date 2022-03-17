@@ -3,8 +3,7 @@ import { Don } from '../don/Don';
 import { VeterinaireRepository } from './VeterinaireRepository';
 
 export class Veterinaire {
-  private _id: string;
-  private _assigned?: Don;
+  constructor(private _id: string, private _assigned: Don = null) {}
 
   get id() {
     return this._id;
@@ -14,13 +13,13 @@ export class Veterinaire {
     return this._assigned;
   }
 
-  public assignDon(don: Don, veterinaires: VeterinaireRepository): Veterinaire {
+  public assignDon(don: Don, veterinaires: VeterinaireRepository): void {
     this._assigned = don;
-    return veterinaires.save(this);
+    veterinaires.save(this);
   }
 
-  public unAssignDon(veterinaires: VeterinaireRepository): Veterinaire {
+  public unAssignDon(veterinaires: VeterinaireRepository): void {
     this._assigned = null;
-    return veterinaires.save(this);
+    veterinaires.save(this);
   }
 }
