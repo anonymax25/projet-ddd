@@ -14,8 +14,13 @@ export class Veterinaire {
     return this._assigned;
   }
 
-  assignDon(don: Don, veterinaires: VeterinaireRepository): void {
+  public assignDon(don: Don, veterinaires: VeterinaireRepository): Veterinaire {
     this._assigned = don;
-    veterinaires.update(this);
+    return veterinaires.save(this);
+  }
+
+  public unAssignDon(veterinaires: VeterinaireRepository): Veterinaire {
+    this._assigned = null;
+    return veterinaires.save(this);
   }
 }
