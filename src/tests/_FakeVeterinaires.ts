@@ -5,18 +5,18 @@ import { VeterinaireRepository } from '../validation/model/veterinaire/Veterinai
 export class FakeVeterinaires implements VeterinaireRepository {
   veterinaires: Map<string, Veterinaire>;
 
-  constructor() {
+  constructor(count = 4) {
     this.veterinaires = new Map();
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < count; i++) {
       const veterinaire = new Veterinaire(i.toString());
       this.veterinaires.set(i.toString(), veterinaire);
     }
   }
-  
+
   findAll(): Veterinaire[] {
     return [...this.veterinaires.values()];
   }
-    
+
   findByAssigned(don: Don): Veterinaire {
     let found;
     this.veterinaires.forEach((vet) => {
@@ -27,7 +27,7 @@ export class FakeVeterinaires implements VeterinaireRepository {
 
   findById(id: string): Veterinaire | null {
     const veterinaire = this.veterinaires.get(id);
-    // if (!veterinaire) throw new Error(`No veterinaire with id: ${id}`);
+    if (!veterinaire) throw new Error(`No veterinaire with id: ${id}`);
     return veterinaire;
   }
 
