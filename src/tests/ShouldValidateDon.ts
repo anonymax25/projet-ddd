@@ -1,14 +1,12 @@
 import test from 'ava';
 
 import { NotificationService } from '../notifications/infrastructure/NotificationService';
-import { Don } from '../validation/model/don/Don';
 import { DonRepository } from '../validation/model/don/DonRepository';
-import { Veterinaire } from '../validation/model/veterinaire/Veterinaire';
 import { VeterinaireRepository } from '../validation/model/veterinaire/VeterinaireRepository';
 import { ValiderDon } from '../validation/use_case/don/ValiderDon';
 
-import { FakeDons } from './FakeDons';
-import { FakeVeterinaires } from './FakeVeterinaires';
+import { FakeDons } from './_FakeDons';
+import { FakeVeterinaires } from './_FakeVeterinaires';
 
 let dons: DonRepository;
 let veterinaires: VeterinaireRepository;
