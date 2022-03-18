@@ -25,7 +25,7 @@ Launch tests
 npm run test
 ```
 
-Coverage
+Tests with coverage
 
 ```bash
 npm run test:cov
