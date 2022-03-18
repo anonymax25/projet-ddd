@@ -1,5 +1,10 @@
 # DDD-adoption
 
+Maxime d'Harboullé
+Quentin Caritey
+Julien Da Corte
+Latif Sagna
+
 Launch tests
 
 ```bash
