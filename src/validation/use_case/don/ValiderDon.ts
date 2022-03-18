@@ -16,7 +16,9 @@ export class ValiderDon {
     const don = this.dons.findById(donId);
     const veterinaire = this.veterinaires.findOneAvailable();
 
-    veterinaire.assignDon(don, this.veterinaires);
+    veterinaire.assignDon(don);
+
+    this.veterinaires.save(veterinaire);
 
     this.notifications.send<DonNotificationType>(
       new Notification(
@@ -37,10 +39,10 @@ export class ValiderDon {
 
     don.validate(response, veterinaire);
 
-    veterinaire.unAssignDon(this.veterinaires);
+    veterinaire.unAssignDon();
 
+    this.veterinaires.save(veterinaire);
     this.dons.save(don);
-
     this.notifications.send<DonNotificationType>(
       new Notification(
         don.ownerId,

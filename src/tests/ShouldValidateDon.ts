@@ -30,11 +30,9 @@ test.before((t) => {
 test('Should find and send validation to a vet', (t) => {
   validation = new ValiderDon(dons, veterinaires, notifications);
   t.is(veterinaires.findAll().filter((vet) => vet.assigned).length, 0);
-
   validation.envoiValidationDon(getDon().id);
 
   t.is(veterinaires.findAll().filter((vet) => vet.assigned).length, 1);
-
   t.false(getDon().validated);
 });
 
