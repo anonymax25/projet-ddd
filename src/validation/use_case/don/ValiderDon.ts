@@ -45,7 +45,7 @@ export class ValiderDon {
       new Notification(
         don.ownerId,
         `Veterinaire validated the Don (id: "${don.id}") with response: ${don.validated}`,
-        'DonValidé'
+        don.validated ? 'DonAccepté' : 'DonRefusé'
       )
     );
     return don;
