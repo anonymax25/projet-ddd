@@ -12,6 +12,11 @@ export class FakeVeterinaires implements VeterinaireRepository {
       this.veterinaires.set(i.toString(), veterinaire);
     }
   }
+  
+  findAll(): Veterinaire[] {
+    return [...this.veterinaires.values()];
+  }
+    
   findByAssigned(don: Don): Veterinaire {
     let found;
     this.veterinaires.forEach((vet) => {

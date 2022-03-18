@@ -1,5 +1,5 @@
-import { NotificationService } from '../../../notifications/infrastructure/NotificationService';
 import { Notification } from '../../../notifications/model/Notification';
+import { NotificationService } from '../../infrastructure/NotificationService';
 import { Don } from '../../model/don/Don';
 import { DonNotificationType } from '../../model/don/DonNotificationType';
 import { DonRepository } from '../../model/don/DonRepository';
@@ -15,13 +15,13 @@ export class ValiderDon {
   public envoiValidationDon(donId: string): void {
     const don = this.dons.findById(donId);
     const veterinaire = this.veterinaires.findOneAvailable();
-    
+
     veterinaire.assignDon(don, this.veterinaires);
 
     this.notifications.send<DonNotificationType>(
       new Notification(
         veterinaire.id,
-        `You need to check the Don id: "${don.id}"`,
+        `You need to check the Don (id: "${don.id}")`,
         'DonPending'
       )
     );
@@ -44,7 +44,7 @@ export class ValiderDon {
     this.notifications.send<DonNotificationType>(
       new Notification(
         don.ownerId,
-        `Validated the Don id: "${don.id}" with response: ${don.validated}`,
+        `Veterinaire validated the Don (id: "${don.id}") with response: ${don.validated}`,
         'DonValidé'
       )
     );

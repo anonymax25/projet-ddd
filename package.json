@@ -80,6 +80,7 @@
     "README.md"
   ],
   "ava": {
+    "verbose": true,
     "failFast": true,
     "timeout": "60s",
     "typescript": {

@@ -1,7 +1,7 @@
 import test from 'ava';
 
-import { NotificationService } from '../notifications/infrastructure/NotificationService';
 import { UsersService } from '../users/infrastructure/UsersService';
+import { NotificationService } from '../validation/infrastructure/NotificationService';
 import { DonRepository } from '../validation/model/don/DonRepository';
 import { VeterinaireRepository } from '../validation/model/veterinaire/VeterinaireRepository';
 import { ValiderDon } from '../validation/use_case/don/ValiderDon';
@@ -11,7 +11,7 @@ import { FakeVeterinaires } from './_FakeVeterinaires';
 
 let dons: DonRepository;
 let veterinaires: VeterinaireRepository;
-let notifs: NotificationService;
+let notifications: NotificationService;
 let users: UsersService;
 
 let validation: ValiderDon;
@@ -24,12 +24,16 @@ test.before((t) => {
   dons = new FakeDons();
   users = new UsersService();
   veterinaires = new FakeVeterinaires();
-  notifs = new NotificationService(users);
+  notifications = new NotificationService(users);
 });
 
 test('Should find and send validation to a vet', (t) => {
-  validation = new ValiderDon(dons, veterinaires, notifs);
+  validation = new ValiderDon(dons, veterinaires, notifications);
+  t.is(veterinaires.findAll().filter((vet) => vet.assigned).length, 0);
+
   validation.envoiValidationDon(getDon().id);
+
+  t.is(veterinaires.findAll().filter((vet) => vet.assigned).length, 1);
 
   t.false(getDon().validated);
 });

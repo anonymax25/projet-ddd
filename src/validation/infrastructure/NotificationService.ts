@@ -1,6 +1,6 @@
+import { INotificationService } from '../../notifications/model/INotificationService';
+import { Notification } from '../../notifications/model/Notification';
 import { UsersService } from '../../users/infrastructure/UsersService';
-import { INotificationService } from '../model/INotificationService';
-import { Notification } from '../model/Notification';
 
 export class NotificationService implements INotificationService {
   constructor(private userService: UsersService) {}
