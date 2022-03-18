@@ -1,3 +1,4 @@
+import { Don } from '../validation/model/don/Don';
 import { Veterinaire } from '../validation/model/veterinaire/Veterinaire';
 import { VeterinaireRepository } from '../validation/model/veterinaire/VeterinaireRepository';
 
@@ -11,10 +12,17 @@ export class FakeVeterinaires implements VeterinaireRepository {
       this.veterinaires.set(i.toString(), veterinaire);
     }
   }
+  findByAssigned(don: Don): Veterinaire {
+    let found;
+    this.veterinaires.forEach((vet) => {
+      if (vet.assigned !== null && vet.assigned.id === don.id) found = vet;
+    });
+    return found;
+  }
 
-  findById(id: string): Veterinaire {
+  findById(id: string): Veterinaire | null {
     const veterinaire = this.veterinaires.get(id);
-    if (!veterinaire) throw new Error(`No veterinaire with id: ${id}`);
+    // if (!veterinaire) throw new Error(`No veterinaire with id: ${id}`);
     return veterinaire;
   }
 
@@ -22,10 +30,12 @@ export class FakeVeterinaires implements VeterinaireRepository {
     this.veterinaires.set(veterinaire.id, veterinaire);
   }
 
-  findOneAvailable(): Veterinaire {
+  findOneAvailable(): Veterinaire | null {
+    let found;
     this.veterinaires.forEach((vet) => {
-      if (vet.assigned === null) return vet;
+      if (vet.assigned === null) found = vet;
     });
-    throw new Error('No veterinaire available');
+    if (!found) throw new Error('No veterinaire available');
+    return found;
   }
 }

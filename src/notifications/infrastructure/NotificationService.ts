@@ -1,11 +1,10 @@
-export class NotificationService {
-  notifications: Notification[];
+import { INotificationService } from '../model/INotificationService';
+import { Notification } from '../model/Notification';
 
-  readAll(): Notification[] {
-    return notification;
-  }
-
-  push(notification: Notification) {
-    this.notifications.push(notification);
+export class NotificationService implements INotificationService {
+  send(notification: Notification) {
+    console.log(
+      `[${notification.type}] to ${notification.toId}: ${notification.msg}`
+    );
   }
 }

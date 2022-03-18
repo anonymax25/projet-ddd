@@ -1,3 +1,6 @@
+import { NotificationService } from '../../../notifications/infrastructure/NotificationService';
+import { Notification } from '../../../notifications/model/Notification';
+import { NotificationType } from '../../../notifications/model/NotificationType';
 import { Don } from '../../model/don/Don';
 import { DonRepository } from '../../model/don/DonRepository';
 import { VeterinaireRepository } from '../../model/veterinaire/VeterinaireRepository';
@@ -5,13 +8,21 @@ import { VeterinaireRepository } from '../../model/veterinaire/VeterinaireReposi
 export class ValiderDon {
   constructor(
     private dons: DonRepository,
-    private veterinaires: VeterinaireRepository
+    private veterinaires: VeterinaireRepository,
+    private notifications: NotificationService
   ) {}
 
   public envoiValidationDon(donId: string): void {
     const don = this.dons.findById(donId);
-    const veterinare = this.veterinaires.findOneAvailable();
-    veterinare.assignDon(don, this.veterinaires);
+    const veterinaire = this.veterinaires.findOneAvailable();
+    veterinaire.assignDon(don, this.veterinaires);
+    this.notifications.send(
+      new Notification(
+        veterinaire.id,
+        `You need to check the Don (${don.id})`,
+        'DonAccepte'
+      )
+    );
   }
 
   public reponseValidationDon(
@@ -27,6 +38,13 @@ export class ValiderDon {
     veterinaire.unAssignDon(this.veterinaires);
 
     this.dons.save(don);
+    this.notifications.send(
+      new Notification(
+        veterinaire.id,
+        `Validated the Don (${don.id})`,
+        'DonAccepte'
+      )
+    );
     return don;
   }
 }
