@@ -16,7 +16,7 @@
     "fix:prettier": "prettier \"src/**/*.ts\" --write",
     "fix:lint": "eslint src --ext .ts --fix",
     "test": "npm run build && ava",
-    "test:cov": "c8 ava",
+    "test:cov": "npm run build && c8 ava",
     "test:old": "run-s build test:*",
     "test:lint": "eslint src --ext .ts",
     "test:prettier": "prettier \"src/**/*.ts\" --list-different",
