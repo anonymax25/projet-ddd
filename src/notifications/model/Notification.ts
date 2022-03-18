@@ -1,11 +1,13 @@
+import { User } from '../../users/model/User';
+
 export class Notification<T> {
   constructor(
-    private _toId: string,
+    private _toId: User['id'],
     private _msg: string,
     private _type: T
   ) {}
 
-  get toId(): string {
+  get toId(): User['id'] {
     return this._toId;
   }
 
@@ -17,7 +19,4 @@ export class Notification<T> {
     return this._type;
   }
 
-  public toString(): string {
-    return `[${this.type}] to ${this.toId}: ${this.msg}`;
-  }
 }

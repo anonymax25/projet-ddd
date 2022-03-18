@@ -21,6 +21,7 @@ export class FakeDons implements DonRepository {
     for (let i = 0; i < 4; i++) {
       const don = new Don(
         i.toString(),
+        '4',
         this.animals.get(i.toString()),
         new Date(),
         false,

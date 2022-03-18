@@ -15,12 +15,14 @@ export class ValiderDon {
   public envoiValidationDon(donId: string): void {
     const don = this.dons.findById(donId);
     const veterinaire = this.veterinaires.findOneAvailable();
+    
     veterinaire.assignDon(don, this.veterinaires);
+
     this.notifications.send<DonNotificationType>(
       new Notification(
         veterinaire.id,
-        `You need to check the Don (${don.id})`,
-        'DonAccepte'
+        `You need to check the Don id: "${don.id}"`,
+        'DonPending'
       )
     );
   }
@@ -38,11 +40,12 @@ export class ValiderDon {
     veterinaire.unAssignDon(this.veterinaires);
 
     this.dons.save(don);
+
     this.notifications.send<DonNotificationType>(
       new Notification(
-        veterinaire.id,
-        `Validated the Don (${don.id})`,
-        'DonAccepte'
+        don.ownerId,
+        `Validated the Don id: "${don.id}" with response: ${don.validated}`,
+        'DonValidé'
       )
     );
     return don;

@@ -1,1 +1,1 @@
-export type DonNotificationType = 'DonAccepte' | 'DonRefuse';
+export type DonNotificationType = 'DonPending' | 'DonValidé';

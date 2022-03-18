@@ -1,6 +1,7 @@
 import test from 'ava';
 
 import { NotificationService } from '../notifications/infrastructure/NotificationService';
+import { UsersService } from '../users/infrastructure/UsersService';
 import { DonRepository } from '../validation/model/don/DonRepository';
 import { VeterinaireRepository } from '../validation/model/veterinaire/VeterinaireRepository';
 import { ValiderDon } from '../validation/use_case/don/ValiderDon';
@@ -11,6 +12,7 @@ import { FakeVeterinaires } from './_FakeVeterinaires';
 let dons: DonRepository;
 let veterinaires: VeterinaireRepository;
 let notifs: NotificationService;
+let users: UsersService;
 
 let validation: ValiderDon;
 
@@ -20,8 +22,9 @@ const getDon = () => {
 
 test.before((t) => {
   dons = new FakeDons();
+  users = new UsersService();
   veterinaires = new FakeVeterinaires();
-  notifs = new NotificationService();
+  notifs = new NotificationService(users);
 });
 
 test('Should find and send validation to a vet', (t) => {

@@ -5,6 +5,7 @@ import { Animal } from './Animal';
 export class Don {
   constructor(
     private _id: string,
+    private _ownerId: string,
     private _animal: Animal,
     private _created: Date,
     private _validated?: boolean,
@@ -13,6 +14,10 @@ export class Don {
 
   get id(): string {
     return this._id;
+  }
+
+  get ownerId(): string {
+    return this._ownerId;
   }
 
   get animal(): Animal {
