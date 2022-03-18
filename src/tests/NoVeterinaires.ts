@@ -20,7 +20,7 @@ const getDon = () => {
   return dons.findById('0');
 };
 
-test.before((t) => {
+test.before(() => {
   dons = new FakeDons();
   users = new UsersService();
   veterinaires = new FakeVeterinaires(0);
