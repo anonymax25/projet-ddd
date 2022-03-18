@@ -31,11 +31,11 @@ test('Should find and send validation to a vet', (t) => {
   t.false(getDon().validated);
 });
 
-// test('Should save the response of the vet', (t) => {
-//   const assignedVeterinaire = veterinaires.findByAssigned(getDon());
-//   validation.reponseValidationDon(getDon().id, assignedVeterinaire.id, true);
+test('Should save the response of the vet', (t) => {
+  const assignedVeterinaire = veterinaires.findByAssigned(getDon());
+  validation.reponseValidationDon(getDon().id, assignedVeterinaire.id, true);
 
-//   t.true(getDon().validated);
-//   t.is(getDon().veterinaire.id, assignedVeterinaire.id);
-//   t.is(veterinaires.findById(assignedVeterinaire.id).assigned, null);
-// });
+  t.true(getDon().validated);
+  t.is(getDon().veterinaire.id, assignedVeterinaire.id);
+  t.is(veterinaires.findById(assignedVeterinaire.id).assigned, null);
+});
