@@ -1,10 +1,8 @@
-import { NotificationType } from './NotificationType';
-
-export class Notification {
+export class Notification<T> {
   constructor(
     private _toId: string,
     private _msg: string,
-    private _type: NotificationType
+    private _type: T
   ) {}
 
   get toId(): string {
@@ -15,7 +13,7 @@ export class Notification {
     return this._msg;
   }
 
-  get type(): NotificationType {
+  get type(): T {
     return this._type;
   }
 

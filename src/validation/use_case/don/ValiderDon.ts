@@ -1,7 +1,7 @@
 import { NotificationService } from '../../../notifications/infrastructure/NotificationService';
 import { Notification } from '../../../notifications/model/Notification';
-import { NotificationType } from '../../../notifications/model/NotificationType';
 import { Don } from '../../model/don/Don';
+import { DonNotificationType } from '../../model/don/DonNotificationType';
 import { DonRepository } from '../../model/don/DonRepository';
 import { VeterinaireRepository } from '../../model/veterinaire/VeterinaireRepository';
 
@@ -16,7 +16,7 @@ export class ValiderDon {
     const don = this.dons.findById(donId);
     const veterinaire = this.veterinaires.findOneAvailable();
     veterinaire.assignDon(don, this.veterinaires);
-    this.notifications.send(
+    this.notifications.send<DonNotificationType>(
       new Notification(
         veterinaire.id,
         `You need to check the Don (${don.id})`,
@@ -38,7 +38,7 @@ export class ValiderDon {
     veterinaire.unAssignDon(this.veterinaires);
 
     this.dons.save(don);
-    this.notifications.send(
+    this.notifications.send<DonNotificationType>(
       new Notification(
         veterinaire.id,
         `Validated the Don (${don.id})`,
