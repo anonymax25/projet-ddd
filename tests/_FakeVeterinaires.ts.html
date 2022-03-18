@@ -30,9 +30,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">91.66% </span>
+                <span class="strong">92.3% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>11/12</span>
+                <span class='fraction'>12/13</span>
             </div>
         
             
@@ -117,43 +117,43 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Don } from '../validation/model/don/Don';
 import { Veterinaire } from '../validation/model/veterinaire/Veterinaire';
@@ -162,18 +162,18 @@ import { VeterinaireRepository } from '../validation/model/veterinaire/Veterinai
 export class FakeVeterinaires implements VeterinaireRepository {
   veterinaires: Map&lt;string, Veterinaire&gt;;
 &nbsp;
-  constructor() {
+  constructor(count = 4) {
     this.veterinaires = new Map();
-    for (let i = 0; i &lt; 4; i++) {
+    for (let i = 0; i &lt; count; i++) {
       const veterinaire = new Veterinaire(i.toString());
       this.veterinaires.set(i.toString(), veterinaire);
     }
   }
-  
+&nbsp;
   findAll(): Veterinaire[] {
     return [...this.veterinaires.values()];
   }
-    
+&nbsp;
   findByAssigned(don: Don): Veterinaire {
     let found;
     this.veterinaires.forEach((vet) =&gt; {
@@ -184,7 +184,7 @@ export class FakeVeterinaires implements VeterinaireRepository {
 &nbsp;
   findById(id: string): Veterinaire | null {
     const veterinaire = this.veterinaires.get(id);
-    // if (!veterinaire) throw new Error(`No veterinaire with id: ${id}`);
+    if (!veterinaire) <span class="branch-0 cbranch-no" title="branch not covered" >throw new Error(`No veterinaire with id: ${id}`);</span>
     return veterinaire;
   }
 &nbsp;
@@ -197,7 +197,7 @@ export class FakeVeterinaires implements VeterinaireRepository {
     this.veterinaires.forEach((vet) =&gt; {
       if (vet.assigned === null) found = vet;
     });
-    if (!found) <span class="branch-0 cbranch-no" title="branch not covered" >throw new Error('No veterinaire available');</span>
+    if (!found) throw new Error('No veterinaire available');
     return found;
   }
 }
@@ -208,7 +208,7 @@ export class FakeVeterinaires implements VeterinaireRepository {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Fri Mar 18 2022 15:00:57 GMT+0000 (Coordinated Universal Time)
+                at Fri Mar 18 2022 15:16:11 GMT+0000 (Coordinated Universal Time)
             </div>
         <script src="../prettify.js"></script>
         <script>
