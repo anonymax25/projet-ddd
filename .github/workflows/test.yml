@@ -16,21 +16,23 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
+
       - name: Install dependencies
         run: npm i
-      - run: npm run build
-      - run: npm run test
-      - run: npm run test:cov
-      - name: Publish test coverage report
-        uses: EndBug/add-and-commit@v4
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm run test:cov
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
-          add: docs
-          force: true
-          message: Add generated docs
-          branch: pages
-        env:
-          GITHUB_TOKEN: ${TOKEN}
+          branch: pages # The branch the action should deploy to.
+          folder: docs
