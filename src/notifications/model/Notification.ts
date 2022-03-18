@@ -18,6 +18,6 @@ export class Notification<T> {
   }
 
   public toString(): string {
-    return `Notification (${this.toId}) to (${this.toId}): ${this.msg}`;
+    return `[${this.type}] to ${this.toId}: ${this.msg}`;
   }
 }
