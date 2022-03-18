@@ -31,5 +31,6 @@ jobs:
           add: docs
           force: true
           message: Add generated docs
+          branch: pages
         env:
           GITHUB_TOKEN: ${TOKEN}
