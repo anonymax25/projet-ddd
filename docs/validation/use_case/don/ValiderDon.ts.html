@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">58% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>29/50</span>
+                <span class='fraction'>50/50</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/3</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">58% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>29/50</span>
+                <span class='fraction'>50/50</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -141,27 +141,27 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { NotificationService } from '../../../notifications/infrastructure/NotificationService';
 import { Notification } from '../../../notifications/model/Notification';
@@ -190,28 +190,28 @@ export class ValiderDon {
     );
   }
 &nbsp;
-  public <span class="fstat-no" title="function not covered" >reponseValidationDon(</span>
-<span class="cstat-no" title="statement not covered" >    donId: string,</span>
-<span class="cstat-no" title="statement not covered" >    veterinaireId: string,</span>
-<span class="cstat-no" title="statement not covered" >    response: boolean</span>
-<span class="cstat-no" title="statement not covered" >  ): Don {</span>
-<span class="cstat-no" title="statement not covered" >    const veterinaire = this.veterinaires.findById(veterinaireId);</span>
-<span class="cstat-no" title="statement not covered" >    const don = this.dons.findById(donId);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    don.validate(response, veterinaire);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    veterinaire.unAssignDon(this.veterinaires);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    this.dons.save(don);</span>
-<span class="cstat-no" title="statement not covered" >    this.notifications.send&lt;DonNotificationType&gt;(</span>
-<span class="cstat-no" title="statement not covered" >      new Notification(</span>
-<span class="cstat-no" title="statement not covered" >        veterinaire.id,</span>
-<span class="cstat-no" title="statement not covered" >        `Validated the Don (${don.id})`,</span>
-<span class="cstat-no" title="statement not covered" >        'DonAccepte'</span>
-<span class="cstat-no" title="statement not covered" >      )</span>
-<span class="cstat-no" title="statement not covered" >    );</span>
-<span class="cstat-no" title="statement not covered" >    return don;</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+  public reponseValidationDon(
+    donId: string,
+    veterinaireId: string,
+    response: boolean
+  ): Don {
+    const veterinaire = this.veterinaires.findById(veterinaireId);
+    const don = this.dons.findById(donId);
+&nbsp;
+    don.validate(response, veterinaire);
+&nbsp;
+    veterinaire.unAssignDon(this.veterinaires);
+&nbsp;
+    this.dons.save(don);
+    this.notifications.send&lt;DonNotificationType&gt;(
+      new Notification(
+        veterinaire.id,
+        `Validated the Don (${don.id})`,
+        'DonAccepte'
+      )
+    );
+    return don;
+  }
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -220,7 +220,7 @@ export class ValiderDon {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Fri Mar 18 2022 12:02:53 GMT+0000 (Coordinated Universal Time)
+                at Fri Mar 18 2022 12:05:31 GMT+0000 (Coordinated Universal Time)
             </div>
         <script src="../../../prettify.js"></script>
         <script>
