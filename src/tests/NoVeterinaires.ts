@@ -30,7 +30,7 @@ test.before((t) => {
 test('Should not find a vet', (t) => {
   validation = new ValiderDon(dons, veterinaires, notifications);
   try {
-    validation.envoiValidationDon(getDon().id);
+    validation.envoiValidationDon({ donId: getDon().id });
   } catch (e) {
     t.is(e.message, 'No veterinaire available');
   }

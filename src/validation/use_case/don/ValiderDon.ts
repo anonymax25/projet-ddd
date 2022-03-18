@@ -1,5 +1,7 @@
 import { Notification } from '../../../notifications/model/Notification';
 import { NotificationService } from '../../infrastructure/NotificationService';
+import { ResponseValidationDon } from '../../infrastructure/ResponseValidationDon.dto';
+import { SendValidationDon } from '../../infrastructure/SendValidationDon.dto';
 import { Don } from '../../model/don/Don';
 import { DonNotificationType } from '../../model/don/DonNotificationType';
 import { DonRepository } from '../../model/don/DonRepository';
@@ -12,8 +14,8 @@ export class ValiderDon {
     private notifications: NotificationService
   ) {}
 
-  public envoiValidationDon(donId: string): void {
-    const don = this.dons.findById(donId);
+  public envoiValidationDon(dto: SendValidationDon): void {
+    const don = this.dons.findById(dto.donId);
     const veterinaire = this.veterinaires.findOneAvailable();
 
     veterinaire.assignDon(don);
@@ -29,15 +31,11 @@ export class ValiderDon {
     );
   }
 
-  public reponseValidationDon(
-    donId: string,
-    veterinaireId: string,
-    response: boolean
-  ): Don {
-    const veterinaire = this.veterinaires.findById(veterinaireId);
-    const don = this.dons.findById(donId);
+  public reponseValidationDon(dto: ResponseValidationDon): Don {
+    const veterinaire = this.veterinaires.findById(dto.veterinaireId);
+    const don = this.dons.findById(dto.donId);
 
-    don.validate(response, veterinaire);
+    don.validate(dto.response, veterinaire);
 
     veterinaire.unAssignDon();
 
