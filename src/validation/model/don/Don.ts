@@ -7,8 +7,8 @@ export class Don {
     private _id: string,
     private _animal: Animal,
     private _created: Date,
-    private _validated: boolean | null,
-    private _veterinaire: Veterinaire
+    private _validated?: boolean,
+    private _veterinaire?: Veterinaire
   ) {}
 
   get id(): string {
