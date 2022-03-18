@@ -3,7 +3,6 @@ import { INotificationService } from '../model/INotificationService';
 import { Notification } from '../model/Notification';
 
 export class NotificationService implements INotificationService {
-
   constructor(private userService: UsersService) {}
 
   send<T>(notification: Notification<T>) {
